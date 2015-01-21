@@ -6,8 +6,10 @@
 ;; Version: 0.1
 ;; Keywords: comms
 ;; URL: https://github.com/hagleitn/stock-ticker
-;; Package-Requires: ((s "1.9.0") (dash "2.10.0") (dash-functional "1.2.0")
-;;                    (cl-lib "0.3") (emacs "24"))
+;; Package-Requires: ((s "1.9.0") (dash "2.10.0")
+;;                    (dash-functional "1.2.0")
+;;                    (cl-lib "0.3") (request "0.2.0)
+;;                    (emacs "24"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -33,12 +35,11 @@
 ;; YQL.
 
 ;;; Code:
-
-(require 's)
-(require 'request)
 (require 'cl-lib)
 (require 'dash)
 (require 'dash-functional)
+(require 'request)
+(require 's)
 (require 'timer)
 
 (defun stock-ticker--query (symbols)
@@ -111,7 +112,7 @@
 (define-minor-mode stock-ticker-global-mode
   "Add stock ticker info to the mode line.
 
-Enabeling stock ticker global mode will add price information in the form
+Enabeling stock ticker global mode will add stock information in the form
 SYMBOL: PRICE CHANGE (PERCENT CHANGE) to the mode line for each stock symbol
 listed in 'stock-ticker-symbols'. Only one symbol is displayed at a time and
 the mode cycles through the requested symbols at a configurable interval."
@@ -135,7 +136,5 @@ the mode cycles through the requested symbols at a configurable interval."
                        'stock-ticker--next-symbol))
     (stock-ticker--update)))
 
-
 (provide 'stock-ticker)
-
 ;;; stock-ticker.el ends here
