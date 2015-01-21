@@ -6,7 +6,7 @@
 ;; Version: 0.1
 ;; Keywords: comms
 ;; URL: https://github.com/hagleitn/stock-ticker
-;; Package-Requires: ((dash "2.4.0") (s "1.9.0") (request "0.2.0"))
+;; Package-Requires: ((dash "2.4.0") (json "1.4") (s "1.9.0") (request "0.2.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -33,6 +33,7 @@
 
 ;;; Code:
 (require 'dash)
+(require 'json)
 (require 'request)
 (require 's)
 (require 'timer)
