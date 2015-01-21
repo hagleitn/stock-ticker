@@ -62,20 +62,6 @@
                  (if percent percent ""))))
      qs)))
 
-(defun stock-ticker--update ()
-  "Update the global stock-ticker string."
-  (request
-   "http://query.yahooapis.com/v1/public/yql"
-   :params `((q . ,(stock-ticker--query stock-ticker-symbols))
-             (env . "http://datatables.org/alltables.env")
-             (format . "json"))
-   :parser 'json-read
-   :success (function*
-             (lambda (&key data &allow-other-keys)
-               (when data
-                 (progn (setq stock-ticker--current-stocks
-                              (stock-ticker--parse data))))))))
-
 (defvar stock-ticker-symbols '("^gspc" "^dji" "^ixic" "^tnx"
                                "^nya" "XAUUSD=X" "EURUSD=X")
   "List of ticker symbols that the mode line will cycle through.")
@@ -91,6 +77,20 @@
 (defvar stock-ticker--current-index 0)
 (defvar stock-ticker--update-timer nil)
 (defvar stock-ticker--display-timer nil)
+
+(defun stock-ticker--update ()
+  "Update the global stock-ticker string."
+  (request
+   "http://query.yahooapis.com/v1/public/yql"
+   :params `((q . ,(stock-ticker--query stock-ticker-symbols))
+             (env . "http://datatables.org/alltables.env")
+             (format . "json"))
+   :parser 'json-read
+   :success (function*
+             (lambda (&key data &allow-other-keys)
+               (when data
+                 (progn (setq stock-ticker--current-stocks
+                              (stock-ticker--parse data))))))))
 
 (defun stock-ticker--next-symbol ()
   "Cycle throug the available ticker symbols and update the mode line."
