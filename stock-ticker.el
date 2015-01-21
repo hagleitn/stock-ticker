@@ -62,22 +62,26 @@
                  (if percent percent ""))))
      qs)))
 
+;;;###autoload
 (defgroup stock-ticker nil
   "Stock ticker."
   :group 'applications
   :prefix "stock-ticker-")
 
+;;;###autoload
 (defcustom stock-ticker-symbols '("^gspc" "^dji" "^ixic" "^tnx"
 				  "^nya" "XAUUSD=X" "EURUSD=X")
   "List of ticker symbols that the mode line will cycle through."
   :type '(string)
   :group 'stock-ticker)
 
+;;;###autoload
 (defcustom stock-ticker-update-interval 300
   "Number of seconds between rest calls to fetch data."
   :type 'integer
   :group 'stock-ticker)
 
+;;;###autoload
 (defcustom stock-ticker-display-interval 10
   "Number of seconds between refreshing the mode line."
   :type 'integer
