@@ -6,7 +6,7 @@
 ;; Version: 0.1
 ;; Keywords: comms
 ;; URL: https://github.com/hagleitn/stock-ticker
-;; Package-Requires: ((dash "2.4.0") (s "1.9.0") (request "0.2.0"))
+;; Package-Requires: ((s "1.9.0") (request "0.2.0"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -32,7 +32,6 @@
 ;; YQL.
 
 ;;; Code:
-(require 'dash)
 (require 'json)
 (require 'request)
 (require 's)
@@ -47,7 +46,7 @@
 (defun stock-ticker--parse (data)
   "Parse financial DATA into list of display strings."
   (let ((qs (assoc-default 'quote (assoc-default 'results (assoc-default 'query data)))))
-    (-map
+    (mapcar
      (lambda (q)
        (let ((percent (assoc-default 'PercentChange q))
              (change (assoc-default 'Change q))
@@ -63,15 +62,26 @@
                  (if percent percent ""))))
      qs)))
 
-(defvar stock-ticker-symbols '("^gspc" "^dji" "^ixic" "^tnx"
-                               "^nya" "XAUUSD=X" "EURUSD=X")
-  "List of ticker symbols that the mode line will cycle through.")
+(defgroup stock-ticker nil
+  "Stock ticker."
+  :group 'applications
+  :prefix "stock-ticker-")
 
-(defvar stock-ticker-update-interval 300
-  "Number of seconds between rest calls to fetch data.")
+(defcustom stock-ticker-symbols '("^gspc" "^dji" "^ixic" "^tnx"
+				  "^nya" "XAUUSD=X" "EURUSD=X")
+  "List of ticker symbols that the mode line will cycle through."
+  :type '(string)
+  :group 'stock-ticker)
 
-(defvar stock-ticker-display-interval 10
-  "Number of seconds between refreshing the mode line.")
+(defcustom stock-ticker-update-interval 300
+  "Number of seconds between rest calls to fetch data."
+  :type 'integer
+  :group 'stock-ticker)
+
+(defcustom stock-ticker-display-interval 10
+  "Number of seconds between refreshing the mode line."
+  :type 'integer
+  :group 'stock-ticker)
 
 (defvar stock-ticker--current "")
 (defvar stock-ticker--current-stocks nil)
