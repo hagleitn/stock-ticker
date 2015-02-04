@@ -1,5 +1,7 @@
 # stock-ticker
 
+[![MELPA](http://melpa.org/packages/speed-type-badge.svg)](http://melpa.org/#/stock-ticker)
+
 Emacs minor mode to show stock information in mode line.
 
 ![Screenshot](https://raw.github.com/hagleitn/stock-ticker/master/screen-shot-ticker.png)
@@ -12,9 +14,16 @@ Data is fetched from Yahoo's finance api via YQL.
 
 ## Installation
 
-Put stock-ticker.el into a directory specified by the load-path
-variable. Alternatively, you can add a directory to the variable
-load-path by (add-to-list 'load-path "ADDITIONAL-DIRECTORY").
+Install speed-type from [MELPA](melpa.org) with:
+
+```
+M-x package-install RET speed-type
+```
+
+If you prefer to install by hand: Put stock-ticker.el into a directory
+specified by the load-path variable. Alternatively, you can add a
+directory to the variable load-path by (add-to-list 'load-path
+"ADDITIONAL-DIRECTORY").
 
 If you put the file in "~/.emacs.d/stock-ticker/stock-ticker.el" for
 instance, the following snipped in your .emacs file will load and init
