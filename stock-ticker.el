@@ -53,7 +53,7 @@
              (symbol (assoc-default 'Symbol q))
              (price (assoc-default 'LastTradePriceOnly q))
              (name (assoc-default 'Name q)))
-         (format "%s: %s %s (%s) "
+         (format " %s: %s %s (%s) "
                  (if (or
                       (string-match "=" symbol)
                       (string-match "\\^" symbol)) name symbol)
