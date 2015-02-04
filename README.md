@@ -14,10 +14,10 @@ Data is fetched from Yahoo's finance api via YQL.
 
 ## Installation
 
-Install speed-type from [MELPA](melpa.org) with:
+Install stock-ticker from [MELPA](melpa.org) with:
 
 ```
-M-x package-install RET speed-type
+M-x package-install RET stock-ticker
 ```
 
 If you prefer to install by hand: Put stock-ticker.el into a directory
