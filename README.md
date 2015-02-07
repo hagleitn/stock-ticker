@@ -1,6 +1,6 @@
 # stock-ticker
 
-[![MELPA](http://melpa.org/packages/speed-type-badge.svg)](http://melpa.org/#/stock-ticker)
+[![MELPA](http://melpa.org/packages/stock-ticker-badge.svg)](http://melpa.org/#/stock-ticker)
 
 Emacs minor mode to show stock information in mode line.
 
